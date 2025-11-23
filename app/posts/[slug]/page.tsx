@@ -10,10 +10,8 @@ type PostPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export async function generateMetadata({
-  params,
-}: PostPageProps): Promise<Metadata> {
-  const { slug } = await params;
+export async function generateMetadata(props: PostPageProps): Promise<Metadata> {
+  const { slug } = await props.params;
   const post = await findPostBySlug(slug);
 
   if (!post) {
@@ -28,8 +26,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function PostPage({ params }: PostPageProps) {
-  const { slug } = await params;
+export default async function PostPage(props: PostPageProps) {
+  const { slug } = await props.params;
   const post = await findPostBySlug(slug);
 
   if (!post) {
