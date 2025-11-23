@@ -11,20 +11,24 @@ export default function AdminPage() {
   const requireToken = Boolean(process.env.ADMIN_TOKEN);
 
   return (
-    <section className="mx-auto flex min-h-screen max-w-3xl flex-col gap-6 px-4 py-16">
-      <div>
-        <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">
-          Admin
+    <section className="mx-auto max-w-2xl px-4 py-12">
+      <div className="mb-8">
+        <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">
+          Admin Panel
         </p>
-        <h1 className="mt-2 text-4xl font-bold">Publish a new post</h1>
-        <p className="mt-3 text-base text-gray-600">
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900">
+          Publish a new post
+        </h1>
+        <p className="mt-2 text-slate-600">
           {requireToken
-            ? "An admin token is required with each submission. Set ADMIN_TOKEN in your .env file and share the value only with trusted people."
-            : "No admin token is set. Anyone that can open this page will be able to publish posts."}
+            ? "An admin token is required. Please ensure you have the correct permissions."
+            : "No admin token is set. Anyone can publish posts."}
         </p>
       </div>
 
-      <AdminForm requireToken={requireToken} />
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+        <AdminForm requireToken={requireToken} />
+      </div>
     </section>
   );
 }

@@ -35,25 +35,31 @@ export default async function PostPage(props: PostPageProps) {
   }
 
   return (
-    <article className="mx-auto flex min-h-screen max-w-3xl flex-col gap-6 px-4 py-16">
-      <div>
-        <Link href="/" className="text-sm font-semibold text-blue-600">
-          ← Back to all posts
+    <article className="mx-auto max-w-3xl px-4 py-12">
+      <div className="mb-8 text-center">
+        <Link
+          href="/"
+          className="mb-6 inline-flex items-center text-sm font-medium text-slate-500 transition-colors hover:text-blue-600"
+        >
+          &larr; Back to home
         </Link>
-        <p className="mt-6 text-sm uppercase tracking-[0.25em] text-gray-400">
+        <h1 className="mb-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+          {post.title}
+        </h1>
+        <time className="text-sm text-slate-500">
           {new Intl.DateTimeFormat("en", {
             year: "numeric",
             month: "long",
             day: "numeric",
           }).format(new Date(post.createdAt))}
-        </p>
-        <h1 className="mt-3 text-4xl font-bold text-gray-900">{post.title}</h1>
-        <p className="mt-4 text-xl text-gray-600">{post.summary}</p>
+        </time>
       </div>
 
-      <div className="space-y-4 text-lg leading-relaxed text-gray-800">
+      <div className="mx-auto text-lg leading-relaxed text-slate-700">
         {post.content.split(/\r?\n\s*\r?\n/).map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
+          <p key={index} className="mb-6">
+            {paragraph}
+          </p>
         ))}
       </div>
     </article>
