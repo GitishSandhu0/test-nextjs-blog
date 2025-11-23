@@ -70,7 +70,6 @@ async function ensureUniqueSlug(
 ) {
   let candidate = baseSlug;
   let suffix = 1;
-  // Add numeric suffix until slug is unique
   while (await collection.findOne({ slug: candidate })) {
     candidate = `${baseSlug}-${suffix}`;
     suffix += 1;
